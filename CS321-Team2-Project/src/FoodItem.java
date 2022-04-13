@@ -1,24 +1,24 @@
 
 public class FoodItem {
 	private String name;
-	private String time; //Breakfast, Lunch, Dinner
+	private Time time; //Breakfast, Lunch, Dinner
 	private int calories;
-	private float protein;
-	private String[] allergies;
+	private double protein;
+	private ArrayList<String> ingredients;
 	
-	FoodItem (String name, String time, int calories, float protein, String[] allergies) {
+	FoodItem (String name, Time time, int calories, double protein, ArrayList<String> ingredients) {
 		this.name = name;
 		this.time = time;
 		this.calories = calories;
 		this.protein = protein;
-		this.allergies = allergies;
+		this.ingredients = ingredients;
 	}
 	
 	String getName() {
 		return name;
 	}
 	
-	String getTime() {
+	Time getTime() {
 		return time;
 	}
 	
@@ -26,11 +26,11 @@ public class FoodItem {
 		return calories;
 	}
 	
-	float getProtein() {
+	double getProtein() {
 		return protein;
 	}
 	
-	String[] getAllergies() {
-		return allergies;
+	ArrayList<String> getIngredients() {
+		return ingredients;
 	}
 }
