@@ -1,3 +1,4 @@
+import java.util.*;
 
 public class FoodItem {
 	private String name;
@@ -6,9 +7,9 @@ public class FoodItem {
 	private double protein;
 	private ArrayList<String> ingredients;
 	
-	FoodItem (String name, Time time, int calories, double protein, ArrayList<String> ingredients) {
+	FoodItem (String name, int calories, double protein, ArrayList<String> ingredients) {
 		this.name = name;
-		this.time = time;
+		//this.time = time;
 		this.calories = calories;
 		this.protein = protein;
 		this.ingredients = ingredients;
@@ -30,7 +31,7 @@ public class FoodItem {
 		return protein;
 	}
 	
-	ArrayList<String> getIngredients() {
+	List<String> getIngredients() {
 		return ingredients;
 	}
 }
