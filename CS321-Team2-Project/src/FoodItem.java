@@ -7,7 +7,7 @@ public class FoodItem {
 	private double protein;
 	private ArrayList<String> ingredients;
 	
-	FoodItem (String name, int calories, double protein, ArrayList<String> ingredients) {
+	FoodItem (String name, int calories, int protein, ArrayList<String> ingredients) {
 		this.name = name;
 		//this.time = time;
 		this.calories = calories;

@@ -1,18 +1,17 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class FileOpenAndFormat {
 	
-	public File openFile() {
-		File foodList = new File("foodList.csv");
+	public static File openFile(String name) {
+		File foodList = new File(name);
 		
 		return foodList;
 	}
 	
-	public ArrayList<String> lineRead(File filename) throws FileNotFoundException {
+	public static ArrayList<String> lineRead(File filename) throws FileNotFoundException {
 		Scanner scnr = new Scanner(filename);
 		ArrayList<String> lines = new ArrayList<>();
 	
@@ -25,7 +24,7 @@ public class FileOpenAndFormat {
 		return lines;
 	}
 	
-	public ArrayList<FoodItem> format(ArrayList<String> list) {
+	public static ArrayList<FoodItem> format(ArrayList<String> list) {
 		
 		ArrayList<FoodItem> foodList = new ArrayList<>();
 		
@@ -36,7 +35,7 @@ public class FileOpenAndFormat {
 			
 			ArrayList<String> ingredients = (ArrayList<String>)lineSplitList.subList(3, lineSplitList.size());
 			
-			FoodItem temp = new FoodItem(lineSplitList.get(0), Integer.parseInt(lineSplitList.get(1)),Double.parseDouble(lineSplitList.get(2)), ingredients);
+			FoodItem temp = new FoodItem(lineSplitList.get(0), Integer.parseInt(lineSplitList.get(1)),Integer.parseInt(lineSplitList.get(2)), ingredients);
 			
 			foodList.add(temp);
 		}
