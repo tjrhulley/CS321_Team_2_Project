@@ -19,6 +19,7 @@ public class PlanOrganizer {
 		calorieLimit = 0;
 		proteinLimit = 0;
 		allergyList = new ArrayList<String>();
+		mealPlan = new ArrayList<FoodItem>();
 	}
 	
 	void setFoodList(ArrayList<FoodItem> foodList) {
@@ -79,13 +80,16 @@ public class PlanOrganizer {
 	
 	void createPlan() {
 		if ((calorieLimit <= 0) || (proteinLimit <= 0)) {
+			System.out.println("Calories and protein cannot be set to 0");
 			return;
 		}
 		
 		Random rand = new Random(System.currentTimeMillis());
 		int calorieTotal = 0;
+		int proteinTotal = 0;
 		int planCheck = 0;
 		int timeCheck = 0;
+		int starvationCount = 0;
 		int food = 0;
 		
 		mealPlan.clear();
@@ -97,6 +101,7 @@ public class PlanOrganizer {
 				if ((breakList.get(food).getCalories() + calorieTotal) <= calorieLimit ) {
 					mealPlan.add(breakList.get(food));
 					calorieTotal += breakList.get(food).getCalories();
+					proteinTotal += breakList.get(food).getProtein();
 				}
 				timeCheck++;
 			} else if (timeCheck == 1) {//Lunch
@@ -104,6 +109,7 @@ public class PlanOrganizer {
 				if ((lunchList.get(food).getCalories() + calorieTotal) <= calorieLimit ) {
 					mealPlan.add(lunchList.get(food));
 					calorieTotal += lunchList.get(food).getCalories();
+					proteinTotal += lunchList.get(food).getProtein();
 				}
 				timeCheck++;
 			} else {//Dinner
@@ -111,17 +117,29 @@ public class PlanOrganizer {
 				if ((dinnerList.get(food).getCalories() + calorieTotal) <= calorieLimit ) {
 					mealPlan.add(dinnerList.get(food));
 					calorieTotal += dinnerList.get(food).getCalories();
+					proteinTotal += dinnerList.get(food).getProtein();
 				}
 				timeCheck = 0;
 			}
 			
 			planCheck++;
 			
-			if (planCheck >= 2) {
-				if (calorieTotal < calorieLimit) {
+			if ((planCheck >= 2) && (starvationCount < 20)) {
+				if (mealPlan.isEmpty()) {
+					System.out.println("Calorie limit too low");
+					return;
+				}
+				
+				if (calorieTotal < (calorieLimit / 2)) {
+					planCheck--;
+				}
+				
+				if (proteinTotal < proteinLimit) {
 					planCheck--;
 				}
 			}
+			
+			starvationCount++;
 		}
 	}
 	
