@@ -118,14 +118,20 @@ public class MealPlanrGUI implements ActionListener {
 			
 			creator.createPlan();
 			
-			JFrame test = new JFrame();
+			JFrame test = new JFrame("Meal Plan");
+			test.setSize(320, 400);
+			test.setLocationRelativeTo(null);
 			
 			JPanel panel = new JPanel();
-			panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+			//panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+			panel.setLayout(new FlowLayout());
 			
 			
-			JLabel mealPlan = new JLabel(creator.getMealPlan().toString());
+			JTextArea mealPlan = new JTextArea(creator.toString());
 			
+			mealPlan.setBackground(null);
+			mealPlan.setEditable(false);
+			mealPlan.setVisible(true);
 			
 			panel.add(mealPlan);
 			
