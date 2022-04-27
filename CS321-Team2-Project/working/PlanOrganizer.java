@@ -91,6 +91,7 @@ public class PlanOrganizer {
 		int timeCheck = 0;
 		int starvationCount = 0;
 		int food = 0;
+		int lunchIndex = 0;
 		
 		mealPlan.clear();
 		divideFoods();
@@ -99,17 +100,20 @@ public class PlanOrganizer {
 			if (timeCheck == 0) {//Breakfast
 				food = rand.nextInt(breakList.size());
 				if ((breakList.get(food).getCalories() + calorieTotal) <= calorieLimit ) {
-					mealPlan.add(breakList.get(food));
+					mealPlan.add(0, breakList.get(food));
 					calorieTotal += breakList.get(food).getCalories();
 					proteinTotal += breakList.get(food).getProtein();
+					breakList.remove(food);
+					lunchIndex++;
 				}
 				timeCheck++;
 			} else if (timeCheck == 1) {//Lunch
 				food = rand.nextInt(lunchList.size());
 				if ((lunchList.get(food).getCalories() + calorieTotal) <= calorieLimit ) {
-					mealPlan.add(lunchList.get(food));
+					mealPlan.add(lunchIndex, lunchList.get(food));
 					calorieTotal += lunchList.get(food).getCalories();
 					proteinTotal += lunchList.get(food).getProtein();
+					lunchList.remove(food);
 				}
 				timeCheck++;
 			} else {//Dinner
@@ -118,6 +122,7 @@ public class PlanOrganizer {
 					mealPlan.add(dinnerList.get(food));
 					calorieTotal += dinnerList.get(food).getCalories();
 					proteinTotal += dinnerList.get(food).getProtein();
+					dinnerList.remove(food);
 				}
 				timeCheck = 0;
 			}
