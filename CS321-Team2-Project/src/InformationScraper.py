@@ -18,10 +18,11 @@ page = requests.get("https://menus.sodexomyway.com/BiteMenu/Menu?menuId=16652&lo
 soup = BeautifulSoup(page.content, 'html.parser')
 
 # Finding respective meal time menus
-breakfast = soup.find(class_="accordion-block breakfast")
-lunch = soup.find(class_="accordion-block lunch")
-dinner = soup.find(class_="accordion-block dinner")
-lateNight = soup.find(class_="accordion-block late night")
+day = soup.find("div", class_="bite-day-menu", id="menuid-27-day")
+breakfast = day.find(class_="accordion-block breakfast")
+lunch = day.find(class_="accordion-block lunch")
+dinner = day.find(class_="accordion-block dinner")
+lateNight = day.find(class_="accordion-block late night")
 
 # name = soup.find_all(class_= "col-xs-9")
 # calories = soup.find_all(class_="col-xs-3 text-right")
