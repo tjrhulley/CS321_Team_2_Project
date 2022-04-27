@@ -102,7 +102,6 @@ public class PlanOrganizer {
 					mealPlan.add(breakList.get(food));
 					calorieTotal += breakList.get(food).getCalories();
 					proteinTotal += breakList.get(food).getProtein();
-					breakList.remove(food);
 				}
 				timeCheck++;
 			} else if (timeCheck == 1) {//Lunch
@@ -111,7 +110,6 @@ public class PlanOrganizer {
 					mealPlan.add(lunchList.get(food));
 					calorieTotal += lunchList.get(food).getCalories();
 					proteinTotal += lunchList.get(food).getProtein();
-					lunchList.remove(food);
 				}
 				timeCheck++;
 			} else {//Dinner
@@ -120,7 +118,6 @@ public class PlanOrganizer {
 					mealPlan.add(dinnerList.get(food));
 					calorieTotal += dinnerList.get(food).getCalories();
 					proteinTotal += dinnerList.get(food).getProtein();
-					dinnerList.remove(food);
 				}
 				timeCheck = 0;
 			}
@@ -150,7 +147,7 @@ public class PlanOrganizer {
 	public String toString() {
 		String str = "";
 		for (int x = 0; x < mealPlan.size(); x++) {
-			str = mealPlan.get(x) + "\n";
+			str += mealPlan.get(x) + "\n";
 		}
 		return str;
 	}
